@@ -27,49 +27,72 @@ st.plotly_chart(figure_or_data=fig)
 
 st.subheader("Want to find out how much your dream house costs?\n\n")
 
-type_of_property=st.selectbox('Type of property', ['House', 'Apartment']).upper()
-number_of_bedrooms = int(st.number_input('Number of bedrooms', 0, 10))
-living_area=int(st.number_input("Living area",value = 0))
-furnished=st.selectbox("Furnished, select 0 for no, 1 for yes",["0","1"])
-terrace=int(st.selectbox("Terrace, select 0 for no, 1 for yes",["0","1"]))
-terrace_area=int(st.number_input("Terrace area",value=0))
-garden=int(st.selectbox("Garden, select 0 for no, 1 for yes",["0","1"]))
-garden_area=int(st.number_input("Garden area",value = 0))
-total_property_area=int(st.number_input("Total property area",value = 0))
-total_land_area = int(st.number_input("Total land area",value = 50))
-number_of_facades = int(st.number_input("Number of facades (maximum 4)",value = 0))
-swimming_pool=int(st.selectbox("Swimming pool, select 0 for no, 1 for yes",["0","1"]))
-state_of_the_building = st.selectbox("State of the building",["New","Just renovated","Good","to renovate"]).upper()
-fully_equipped_kitch =st.selectbox("Furnished",["Hyper equipped","Equipped","Semi equipped","Not euipped"])
-province=st.selectbox("Province",["Antwerpen","Oost-Vlaanderen","Vlaams-Brabant","Limburg","Hainaut","West-Vlaanderen","Liege","Luxembourg","Namur","Brabant wallon","Brussel"])
-digit = int(st.number_input("Postalcode",value=1000))
+# type_of_property=st.selectbox('Type of property', ['House', 'Apartment']).upper()
+# number_of_bedrooms = int(st.number_input('Number of bedrooms', 0, 10))
+# living_area=int(st.number_input("Living area",value = 0))
+# furnished=st.selectbox("Furnished, select 0 for no, 1 for yes",["0","1"])
+# terrace=int(st.selectbox("Terrace, select 0 for no, 1 for yes",["0","1"]))
+# terrace_area=int(st.number_input("Terrace area",value=0))
+# garden=int(st.selectbox("Garden, select 0 for no, 1 for yes",["0","1"]))
+# garden_area=int(st.number_input("Garden area",value = 0))
+# total_property_area=int(st.number_input("Total property area",value = 0))
+# total_land_area = int(st.number_input("Total land area",value = 50))
+# number_of_facades = int(st.number_input("Number of facades (maximum 4)",value = 0))
+# swimming_pool=int(st.selectbox("Swimming pool, select 0 for no, 1 for yes",["0","1"]))
+# state_of_the_building = st.selectbox("State of the building",["New","Just renovated","Good","to renovate"]).upper()
+# fully_equipped_kitch =st.selectbox("Furnished",["Hyper equipped","Equipped","Semi equipped","Not euipped"])
+# province=st.selectbox("Province",["Antwerpen","Oost-Vlaanderen","Vlaams-Brabant","Limburg","Hainaut","West-Vlaanderen","Liege","Luxembourg","Namur","Brabant wallon","Brussel"])
+# digit = int(st.number_input("Postalcode",value=1000))
 
-clicked = st.button("Calculate for me")
+# clicked = st.button("Calculate for me")
 
-text = ""
-#if the button is clicked, make the prediction
+# text = ""
+# #if the button is clicked, make the prediction
 
-if clicked:
-    property_dict={
-  "type_of_property": type_of_property,
-  "number_of_bedrooms": number_of_bedrooms,
-  "living_area": living_area,
-  "furnished": furnished,
-  "terrace": terrace,
-  "terrace_area": terrace_area,
-  "garden": garden,
-  "garden_area": garden_area,
-  "total_property_area": total_property_area,
-  "total_land_area": total_land_area,
-  "number_of_facades": number_of_facades,
-  "swimming_pool": swimming_pool,
-  "state_of_the_building": state_of_the_building ,
-  "province": province,
-  "kitchen": fully_equipped_kitch,
-  "digit": int(digit/100)
+# if clicked:
+#     property_dict={
+#   "type_of_property": type_of_property,
+#   "number_of_bedrooms": number_of_bedrooms,
+#   "living_area": living_area,
+#   "furnished": furnished,
+#   "terrace": terrace,
+#   "terrace_area": terrace_area,
+#   "garden": garden,
+#   "garden_area": garden_area,
+#   "total_property_area": total_property_area,
+#   "total_land_area": total_land_area,
+#   "number_of_facades": number_of_facades,
+#   "swimming_pool": swimming_pool,
+#   "state_of_the_building": state_of_the_building ,
+#   "province": province,
+#   "kitchen": fully_equipped_kitch,
+#   "digit": int(digit/100)
+# }
+#     model=get_model()
+#     X=preprocess_new_data(property_dict)
+#     text = predict_new_data(X,model)
+
+# st.write(text)
+
+test_dict={
+  "type_of_property": "HOUSE",
+  "number_of_bedrooms": 2,
+  "living_area": 100,
+  "furnished": 1,
+  "terrace": 1,
+  "terrace_area": 0,
+  "garden": 1,
+  "garden_area": 0,
+  "total_property_area": 0,
+  "total_land_area": 0,
+  "number_of_facades": 0,
+  "swimming_pool": 1,
+  "state_of_the_building": "GOOD",
+  "province": "West-Vlaanderen",
+  "kitchen": "Hyper equipped",
+  "digit": 0
 }
-    model=get_model()
-    X=preprocess_new_data(property_dict)
-    text = predict_new_data(X,model)
-
-st.write(text)
+# model=get_model()
+# X=preprocess_new_data(test_dict)
+# text = predict_new_data(X,model)
+# print(text)
