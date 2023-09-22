@@ -29,7 +29,8 @@ def get_model():
             s3.download_fileobj(Bucket="immostudy-temp", Key="ml_model/XGB.joblib", Fileobj=f)
             f.seek(0)
             file = joblib.load(f)
-    return file
+            joblib.dump(file, "xgboos.joblib")
+    # return file
 
 #get the cleaned csv file for visualization from s3 bucket
 def get_data():
@@ -68,3 +69,4 @@ def predict_new_data(X,model):
 #   "kitchen": "Hyper equipped",
 #   "digit": 0
 # }
+

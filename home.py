@@ -2,13 +2,14 @@ import streamlit as st
 from ml_model.get_model import get_model, get_data,preprocess_new_data,predict_new_data
 import pandas as pd
 import plotly.express as px
+import joblib
 
 st.set_page_config(page_title='Immo', page_icon='🏠', layout='wide')
 st.title("Find the price of your dream property")
 st.subheader("First, let's have a look at the overview of the listed properties from immoweb.")
 
 #before that, I remove the extreme prices
-data=pd.read_csv(get_data())
+data=pd.read_csv("ml_model/cleaned_data.csv")
 data_normal_price = data[data["price"]<3500000]
 
 
@@ -68,7 +69,7 @@ if clicked:
   "kitchen": fully_equipped_kitch,
   "digit": int(digit/100)
 }
-    model=get_model()
+    model=joblib.load("ml_model/xgboos.joblib")
     X=preprocess_new_data(property_dict)
     text = predict_new_data(X,model)
 
