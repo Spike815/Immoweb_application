@@ -47,6 +47,8 @@ digit = int(st.number_input("Postalcode",value=1000))
 clicked = st.button("Calculate for me")
 
 text = ""
+#if the button is clicked, make the prediction
+
 if clicked:
     property_dict={
   "type_of_property": type_of_property,
