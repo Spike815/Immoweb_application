@@ -1,5 +1,5 @@
 import streamlit as st
-from ml_model.get_model import get_model, get_data,preprocess_new_data,predict_new_data
+from ml_model.get_model import preprocess_new_data,predict_new_data
 import pandas as pd
 import plotly.express as px
 import joblib
@@ -69,8 +69,27 @@ if clicked:
   "kitchen": fully_equipped_kitch,
   "digit": int(digit/100)
 }
-    model=joblib.load("ml_model/xgboos.joblib")
+    model=joblib.load("./ml_model/xgboos.joblib")
     X=preprocess_new_data(property_dict)
     text = predict_new_data(X,model)
 
 st.write(text)
+
+# test_dict={
+#   "type_of_property": "HOUSE",
+#   "number_of_bedrooms": 2,
+#   "living_area": 100,
+#   "furnished": 1,
+#   "terrace": 1,
+#   "terrace_area": 0,
+#   "garden": 1,
+#   "garden_area": 0,
+#   "total_property_area": 0,
+#   "total_land_area": 0,
+#   "number_of_facades": 0,
+#   "swimming_pool": 1,
+#   "state_of_the_building": "GOOD",
+#   "province": "West-Vlaanderen",
+#   "kitchen": "Hyper equipped",
+#   "digit": 0
+# }
