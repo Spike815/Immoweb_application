@@ -1,45 +1,41 @@
-# from dotenv import load_dotenv
-# import os
+from dotenv import load_dotenv
+import os
 import pandas as pd
-# import boto3
+import boto3
 import joblib
 from io import BytesIO
 import xgboost
-# from pathlib import Path
-import streamlit as st
-from st_files_connection import FilesConnection
+from pathlib import Path
 
 
+env_path = Path().cwd() / "ml_model/.env"
+load_dotenv(env_path)
 
-# env_path = Path().cwd() / "ml_model/.env"
-# load_dotenv(env_path)
 
-
-# access = st.secrets["ACCESS_KEY"]
-# secret = st.secrets["SECRET_KEY"]
-# def s3_obj():
-#     s3 = boto3.client(
-#         service_name='s3',
-#         region_name='eu-west-3',
-#         aws_access_key_id=access,
-#         aws_secret_access_key=secret
-#     )
-#     return s3
-
+access = os.getenv('ACCESS_KEY')
+secret = os.getenv('SECRET_KEY')
+def s3_obj():
+    s3 = boto3.client(
+        service_name='s3',
+        region_name='eu-west-3',
+        aws_access_key_id=access,
+        aws_secret_access_key=secret
+    )
+    return s3
 
 def get_model():
-    # Create connection object and retrieve file contents.
-
-    conn = st.experimental_connection('s3', type=FilesConnection)
-    model = conn.open("immostudy-temp/ml_model/XGB.joblib")
-    return model
+    s3=s3_obj()
+    with BytesIO() as f:
+            s3.download_fileobj(Bucket="immostudy-temp", Key="ml_model/XGB.joblib", Fileobj=f)
+            f.seek(0)
+            file = joblib.load(f)
+    return file
 
 #get the cleaned csv file for visualization from s3 bucket
 def get_data():
-    # Create connection object and retrieve file contents.
-   conn = st.experimental_connection('s3', type=FilesConnection)
-   csv = conn.read("immostudy-temp/csv_files/cleaned_data.csv", input_format="csv", ttl=600)
-   return csv
+     s3=s3_obj()
+     s3_csv_obj = s3.get_object(Bucket='immostudy-temp', Key="csv_files/cleaned_data.csv")["Body"]
+     return s3_csv_obj
      
 def preprocess_new_data(input):
     """this function takes the input and returns a dataframe object which fits the machine learning model"""
