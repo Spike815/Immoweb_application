@@ -1,19 +1,19 @@
-from dotenv import load_dotenv
-import os
+# from dotenv import load_dotenv
+# import os
 import pandas as pd
 import boto3
 import joblib
 from io import BytesIO
 import xgboost
 from pathlib import Path
+import streamlit as st
+
+# env_path = Path().cwd() / "ml_model/.env"
+# load_dotenv(env_path)
 
 
-env_path = Path().cwd() / "ml_model/.env"
-load_dotenv(env_path)
-
-
-access = os.getenv('ACCESS_KEY')
-secret = os.getenv('SECRET_KEY')
+access = st.secrets["ACCESS_KEY"]
+secret = st.secrets["SECRET_KEY"]
 def s3_obj():
     s3 = boto3.client(
         service_name='s3',
