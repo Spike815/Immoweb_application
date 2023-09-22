@@ -1,3 +1,4 @@
+/home/adminuser/venv/bin/python -m pip install --upgrade pip
 aiobotocore==2.5.4
 aiohttp==3.8.5
 aioitertools==0.11.0
