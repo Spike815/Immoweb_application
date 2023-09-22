@@ -1,6 +1,7 @@
 import streamlit as st
 from ml_model.get_model import get_model, get_data,preprocess_new_data,predict_new_data
 import pandas as pd
+import plotly.express as px
 
 st.set_page_config(page_title='Immo', page_icon='🏠', layout='wide')
 st.title("Find the price of your dream property")
@@ -12,7 +13,7 @@ data_normal_price = data[data["price"]<3500000]
 
 
 #This is my second approch by using open stree map
-import plotly.express as px
+
 #I followed a youtube tutorial How to Make Interactive Maps with Python https://www.youtube.com/watch?v=1-6ndLqsy6M
 #and this is where i pick the color palette https://plotly.com/python/builtin-colorscales/
 
