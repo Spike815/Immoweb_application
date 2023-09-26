@@ -1,6 +1,6 @@
 # Immoweb_application
 ## Description
-In this project, I designed the interactive applicationa to help users visualize and predict property prices in Belgium, specifically focusing on real estate properties listed on [Immoweb](https://www.immoweb.be/en). Below are some key points about this project: 
+In this project, I designed the interactive applicationa to help users visualise and predict property prices in Belgium, specifically focusing on real estate properties listed on [Immoweb](https://www.immoweb.be/en). Below are some key points about this project: 
 
 
 ### -Data Collection and Processing
